@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<vxml base="." lang="en-us" application="ExamplesRoot.vxml" version="1.0">
+	<meta name="maintainer" content="steve@indicast.com"/>
+
+	<form id="start">
+		<block>
+			<prompt cond="(new Date()).getDay() == 0" 
+				   bargein="false">
+				Sorry.  We are closed on Sunday.  
+			</prompt>
+		
+			<prompt cond="(new Date()).getDay() != 0" 
+				   bargein="false">
+				Hello!  Thanks for calling.  
+				<audio src="welcome.wav" caching="fast" fetchhint="prefetch">
+					Welcome to our voice service system.  
+				</audio>
+			</prompt>
+		
+			<prompt bargein="true">
+			 <pros rate="160" vol="0.5" pitch="+10%" range="-10%">
+			  <div type="paragraph">
+				You can say <emp level="strong">help</emp> at any time. 
+				<break size="small"/>
+				You can say <emp level="strong">operator</emp> to be transferred to a 
+				representative between 
+				<sayas class="time">8:00 AM</sayas> and 
+				<sayas class="time">5:00 PM</sayas> 
+				<sayas sub="Pacific Daylight Time">PDT</sayas>
+				<break msecs="5500"/>
+				Say <emp>status</emp> to check your account. 
+			   </div>
+			  </pros>
+			</prompt>
+
+			<prompt bargein="true">
+			 <pros rate="100" vol="0.5" pitch="+10%" range="-10%">
+				This is a fast, loud prompt that has a higher pitch 
+				than the base voice and a smaller range.  
+			 </pros>
+			</prompt>
+		</block>
+	</form>
+
+</vxml>

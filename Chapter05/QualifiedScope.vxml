@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<vxml version="1.0" application="root2.vxml">
+  <!-- this variable has document scope. -->
+  <var name="user" expr="'Fraser Family'"/>
+<form>
+  <!-- this variable has dialog scope. -->
+  <var name="user" expr="'Mike Fraser'"/>
+  <block>
+    <!-- this variable has anonymous scope. -->
+    <var name="user" expr="'Susan Fraser'"/>
+    <prompt>
+      The anonymous user is <value expr="user"/>.
+      The dialog user is <value expr="dialog.user"/>.
+      The document user is <value expr="document.user"/>.
+      The application user is <value expr="application.user"/>.
+    </prompt>
+  </block>
+</form>

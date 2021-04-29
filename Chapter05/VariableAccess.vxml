@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <!-- Assign a random number to the variable --> 
+  <var name="number" expr="Math.random()"/>
+  <block>
+    <!-- Access number in cond attribute --> 
+    <if cond="number == 0">
+       <prompt>
+         The value of the variable is zero.
+      </prompt>
+     <else/>
+      <prompt>
+         <!-- Access number in expr attribute --> 
+        The value of the non-zero variable is <value expr="number"/>.
+      </prompt>
+    </if>
+  </block>
+</form>
+</vxml>

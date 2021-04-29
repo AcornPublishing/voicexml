@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<vxml version="1.0" >
+  <!-- Initialize Variables -->
+  <var name="error_count" expr="0"/>
+    
+    <!-- form dialog demonstrates how to perform on-line learning in an email   
+    application --> 
+    <form>
+    
+     <field name="action">
+      <prompt>
+        What do you want to do with the message?
+      </prompt>
+          
+       <grammar>
+          read [again]            {read}
+          reply [to the sender]     {reply}
+          forward               {forward}
+          delete [it]               {delete}
+      </grammar>
+      <dtmf type="application/s-jsgf"> 
+          1 {read} | 2 {reply} |3 {forward} | 4 {delete} 
+      </dtmf>
+      
+      <!-- Increase the number of errors by 1 when the user asks for help -->
+      <help> 
+        <assign name="error_count" expr="error_count + 1"/>
+        What do you want to do with the message? You can choose read, reply,
+        forward, or delete.
+      </help>
+      
+      <!-- increase the number of errors by 1 when a nomatch event is 
+       thrown -->
+      <nomatch count="1">
+          <assign name="error_count" expr="error_count + 1"/>
+        Say one of the following. Read, reply, forward, or 
+            delete?
+      </nomatch>
+      <nomatch count="2">
+        <assign name="error_count" expr="error_count + 1"/>
+          Please say what you want to do with the message: select one of the 
+          following actions: read, reply, forward, or delete.
+      </nomatch>
+      <nomatch count="3">
+          <assign name="error_count" expr="error_count + 1"/>
+          To reread the message, press 1; to reply, press 2; to forward,
+          press 3; to delete, press 4.
+       </nomatch>
+          
+       <!-- increase the number of errors by 1 when a noinput event is 
+        thrown -->
+       <noinput count="1">
+         <assign name="error_count" expr="error_count + 1"/>
+         What do you want to do with the message? Read, reply, forward, 
+         or delete?
+       </noinput>
+       <noinput count="2">
+         <assign name="error_count" expr="error_count + 1"/>
+         To reread the message, press 1; to reply, press 2; to forward, 
+         press 3; to delete, press 4.
+       </noinput>
+       
+        <filled>
+          <if cond="action == 'read'">
+            <!-- Add code here for processing read again -->
+          <elseif cond="action == 'reply'"/>
+            <!--Add code here for processing reply -->
+          <elseif cond="action == 'forward'"/>
+            <goto next="#forward"/>
+          <elseif cond="action == 'delete'"/>
+            <!--Add code here for processing delete -->
+           </if>
+        </filled>
+      </field>
+    </form>
+
+    <!--form that forwards a message to a list of recipients-->
+    <form id="forward">
+       <var name="address_list" expr="''"/>
+       
+       <field name="address">
+         
+         <prompt cond="error_count &lt; 3 &amp;&amp; address_list.length == 0">
+           And the recipient is?
+         </prompt>
+         
+        <prompt cond="error_count &gt;= 3 &amp;&amp; address_list.length == 0">
+           Say the recipients one at a time, or say "Done" when you're through. 
+         </prompt>
+         
+         <prompt cond="address_list.length &gt; 0">
+           The next recipient?
+         </prompt>
+   
+         <grammar src="email_address.gram" type="application/x-jsgf"/>       
+         <!--Add code for error handling and assistance here -->
+   
+         <filled>
+           <if cond="address != 'done'">
+             <assign name="address_list" expr="address_list + ' ' + 
+             address"/>
+             <clear namelist="address"/>
+           <else/>
+             <!--Add code here for processing the address list to forward --> 
+           </if>
+         </filled>
+      </field>
+    </form>
+</vxml>

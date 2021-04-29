@@ -1,0 +1,22 @@
+		<filled namelist="one">
+			<prompt>I didn't quite understand you. </prompt> 	
+		</filled>
+	
+		<field name="one" type="boolean">
+			<prompt>Say yes or no.</prompt>
+		</field>
+	
+		<field name="one" type="boolean">
+			<prompt>Say yes or no.</prompt>
+			<filled>
+				<prompt>I didn't quite understand you. </prompt>
+			</filled>
+		</field>
+		
+		<field name="infinite_loop" type="boolean">
+			<prompt>Say yes or no.</prompt>
+			<filled>
+				<prompt>I didn't quite understand you. </prompt>
+				<clear/>
+			</filled>
+		</field>

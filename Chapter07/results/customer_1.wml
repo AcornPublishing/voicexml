@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+   
+
+<!DOCTYPE wml
+  PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.com/DTD/wml_1.1.xml">
+<wml>
+   <card id="main_menu" title="John's MyRubberBands">
+      <p mode="wrap">
+         <a href="#my_profile">My Profile</a>
+         <br/>
+         <a href="#order_status">Order Status</a>
+         <br/>
+         <a href="#product_list">Product List</a>
+         <br/>
+         <a href="#faq">FAQ</a>
+         <br/>
+      </p>
+   </card>
+   <card id="my_profile" title="John's Profile">
+      <p mode="wrap">John<br/>Public<br/>jqp@foo.foo.com<br/>3 
+			Addresses 
+			On File<br/>
+         <a href="#main_menu">Main Menu</a>
+         <br/>
+      </p>
+   </card>
+   <card id="order_status" title="John's Orders">
+      <p mode="wrap">
+			Order #1<br/>2001-06-27T10:35:16<br/>2.48<br/>Processing<br/>
+			=========
+			<br/>
+         <br/>
+			Order #2<br/>2001-06-27T10:35:16<br/>3.99<br/>Processing<br/>
+			=========
+			<br/>
+         <br/>
+         <a href="#main_menu">Main Menu</a>
+         <br/>
+      </p>
+   </card>
+   <card id="product_list" title="Rubberbands!">
+      <p mode="wrap">Mixed Bag of 1000 Rubber Bands<br/>1.99<br/>
+			=========
+			<br/>
+         <br/>Mixed Bag of 5000 Rubber Bands<br/>4.09<br/>
+			=========
+			<br/>
+         <br/>Bag of 1000 Red Rubber Bands<br/>2.19<br/>
+			=========
+			<br/>
+         <br/>Bag of 10000 Red Rubber Bands<br/>17.49<br/>
+			=========
+			<br/>
+         <br/>Bag of 1000 Blue Rubber Bands<br/>0.99<br/>
+			=========
+			<br/>
+         <br/>Bag of 10000 Blue Rubber Bands<br/>8.99<br/>
+			=========
+			<br/>
+         <br/>
+         <a href="#main_menu">Main Menu</a>
+         <br/>
+      </p>
+   </card>
+   <card id="faq" title="FAQ">
+      <p mode="wrap">
+			This is the my rubber bands dot com frequently asked questions list. 
+			Did you know that my rubber bands dot com offers over a hundred 
+			different types of rubberbands? <br/>
+         <br/>
+			Q1.  I keep losing my rubber bands.  Where should I 
+			keep them? <br/> 
+			A1.  You can keep rubber bands on a door knob.  That way they are 
+			always nearby when needed.  
+			<br/>
+         <br/>
+			Q2.  I am trying to shoot rubber bands.  What should 
+			I do?<br/>
+			A2.  You'll shoot your eye out!<br/>
+         <br/>
+         <a href="#main_menu">Main Menu</a>
+         <br/>
+      </p>
+   </card>
+</wml>
+   

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+<var name="number" expr="Math.random()"/>
+<form>
+  <block>
+    <!-- IF structure -->
+    <if cond="number &gt; 0.9">
+      <prompt> 
+        The number <value expr="number"/> is greater than 0.9
+      </prompt>
+     </if>
+
+    <!-- IF-ELSE structure -->
+    <if cond="number &gt; 0.1">
+      <prompt>
+        The number <value expr="number"/> is greater than 0.1
+      </prompt>
+    <else/>
+      <prompt>
+        The number <value expr="number"/> is between 0 and 0.1
+      </prompt>
+    </if>
+
+         <!-- IF-ELSEIF-ELSE structure -->
+    <if cond="number &lt; 0.5">
+      <prompt>
+        The number <value expr="number"/> is less than 0.5
+      </prompt>
+      <elseif cond="number == 0.5"/>
+      <prompt>
+        The number <value expr="number"/> is 0.5
+      </prompt>
+      <else/>
+      <prompt>
+        The number <value expr="number"/> is greater than 0.5
+      </prompt>
+    </if>
+  </block> 
+</form>
+</vxml>

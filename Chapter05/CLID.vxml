@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+<form>
+  <block>
+    <prompt>
+      Your phone number is 
+      <sayas class="phon"><value expr="session.telephone.ani"/></sayas>
+    </prompt>
+  </block>
+</form>
+</vxml>

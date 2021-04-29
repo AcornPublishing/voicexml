@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+  <!-- set recognition confidence level to 0.7 -->
+  <property name="confidencelevel" value="0.7"/>
+  <!-- barge-in is not allowed -->
+  <property name="bargein" value="false"/>
+  <!-- set caching policy to safe -->
+  <property name="caching" value="safe"/>
+  <form id="number_form">
+    <field name="mynumber" type="number">
+    <!-- set timeout to 5 second -->
+      <property name="timeout" value="5s"/>
+      <prompt>
+        Tell me a number. For example, one hundred.
+      </prompt>
+      <filled>
+        <prompt>
+          You said <value expr="mynumber"/>
+        </prompt>
+        <goto next="#dtmf_menu"/>
+      </filled>
+     </field>
+  </form>
+  <menu id="dtmf_menu">
+    <!-- only DTMF is allowed -->
+    <property name="inputmodes" value="dtmf"/>
+    <prompt> 
+      For math press 1, for science press 2, for music press 3.
+    </prompt>
+      <choice dtmf="1" next="#math"> math </choice>
+      <choice dtmf="2" next="#science"> science </choice>
+      <choice dtmf="3" next="#music"> music </choice>
+  </menu>
+
+  <form id="math">
+    <block>
+      <prompt> 
+        You've chosen Math.
+      </prompt>
+    </block>
+  </form>
+ 
+  <form id="science">
+    <block>
+      <prompt> 
+        You've chosen Science.
+      </prompt>
+    </block>
+  </form>
+
+  <form id="music">
+    <block>
+      <prompt> 
+        You've chosen Music.
+      </prompt>
+    </block>
+  </form>
+</vxml>

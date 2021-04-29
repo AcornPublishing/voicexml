@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<vxml verion="1.0" >
+  <!-- Initialize Variables -->
+  <var name="nomatch_count" expr="0"/>
+  <var name="noinput_count" expr="0"/>
+  ...
+  <!—form receives start location and destination location à
+  <form id="locations">
+    
+    <field name="location_from">
+      
+      <prompt bargein="false" cond="nomatch_count > 0 && 
+       nomatch_count * 100.0 / (nomatch_count + noinput_count) >= 80" > 
+        What is your starting address, including city and state.
+        For example, 1234 Palm Tree, San Jose, California.
+      </prompt>
+
+      <prompt cond="nomatch_count == 0 || 
+       nomatch_count * 100.0 / (nomatch_count + noinput_count) < 80" > 
+        Tell me your starting address, city, and state. For example, 1234 
+        Palm Tree, San Jose, California.
+      </prompt>
+    
+      <grammar src="location.gram" type="application/x-jsgf"/>       
+    
+      <help> 
+        <reprompt/>
+      </help>
+       
+      <nomatch>
+        <assign name="nomatch_count" expr="nomatch_count + 1" />
+        <reprompt/>
+      </nomatch>
+       
+      <noinput>
+        <assign name="noinput_count" expr="noinput_count + 1"/>
+        <reprompt/>
+      </noinput>
+    
+      <filled>
+         <!—Add code here for processing à
+      </filled>
+    </field>
+  </form>
+  ...
+</vxml>

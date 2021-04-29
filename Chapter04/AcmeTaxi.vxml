@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<vxml application="AcmeRoot.vxml" lang="en-us" version="1.0">
+
+	<form id="get_me_a_taxi" scope="dialog">
+
+		<block cond="( ((new Date()).getHours() &lt; 6) &amp;&amp; 
+					((new Date()).getHours() &gt; 18) )">
+		 	<prompt>
+		 		Sorry, we are closed right now.  Please call later.  
+		 	</prompt>
+		 	<exit/>
+		</block>
+
+		<field name="ph" type="phone">
+			<prompt count="1">
+				Thank you for calling the Acme Taxi Company.  
+				What is your phone number?
+			</prompt>	
+			<prompt count="2">
+				Please say your phone number.  
+			</prompt>
+			<prompt count="3">
+				Please tell me your phone number.  I need it to 
+				begin your taxi request.  
+			</prompt>
+			<filled>
+				<prompt>You said <value expr="ph"/>.</prompt>
+			</filled>
+		</field>
+
+		<field name="pickup_time" type="time">
+			<prompt>What time do you need to be picked up?</prompt>			
+			<filled>
+				<prompt>
+					You requested pick up at <value expr="pickup_time"/>.
+				</prompt>
+			</filled>
+		</field>	
+
+		<field name="share" 
+			  type="boolean"
+			  modal="true" 
+			  cond="( ((new Date()).getHours() &gt; 10) &amp;&amp; 
+					((new Date()).getHours() &lt; 13) )">
+			<prompt>
+				Do you mine sharing a ride?  Say yes or no.  
+			</prompt>			
+			<filled>
+				<prompt>You said <value expr="share"/>.</prompt>
+			</filled>
+		</field>
+		
+		<field name="pickup_where">
+			<nomatch>
+				<goto next="#record_street"/>
+			</nomatch>
+			<noinput> <goto next="#get_me_a_taxi"/></noinput>
+			<grammar type="application/x-jsgf">
+			<![CDATA[<
+				lake and wabash { law } | 
+				wabash and lake { law } | 
+				main and first { maf } | 
+				first and main { fam } | 
+				airport { air } | 
+				([the] mall) { mall } 
+			]]>				
+			</grammar>
+			<prompt count="1" timeout="1s">
+				Where do you need to be picked up?
+			</prompt>
+			<prompt count="2" timeout="1s">
+				You can say lake and wabash, main and first, airport, 
+				and mall.  
+			</prompt>	
+			<filled>
+				<prompt>
+					You said <value expr="pickup_where"/>. 
+				</prompt>
+			</filled>
+		</field>
+		
+		<field name="confirm_request">
+			<dtmf type="application/x-jsgf">
+				1 2 3 
+			</dtmf>
+			<prompt>
+				Press one two three on your phone to confirm your reservation.
+			</prompt>		
+			<filled>
+				<prompt>
+					We appreciate your business!
+				</prompt>
+			</filled>
+		</field>
+		
+		<field name="voice_confirm_request" type="boolean">
+			<prompt>
+				Would you like to confirm this request?
+			</prompt>
+		
+			<filled>
+				<if cond="voice_confirm_request$.confidence &gt; 0.6">
+					<exit/>
+				<else/>
+					<throw event="nomatch"/>
+				</if>
+			</filled>
+		</field>
+		
+		
+	</form>
+
+	<form id="record_street">
+		<record name="pickup_location" maxtime="10s" beep="true"
+									finalsilence="4000ms" dtmfterm="true" >
+			<prompt> At the tone, please say the name of the place where you would like to be picked up.</prompt>
+			<noinput>I didn't hear anything, please try again.</noinput>
+		</record>
+		
+		<block>
+			<prompt bargein="false">
+				You requested pick up at <value expr="pickup_location"/>
+			</prompt>
+		</block>
+	</form>
+
+</vxml>

@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+<form>
+  <field name="talk" type="boolean">
+    <prompt> 
+      Do you want to talk to the operator?
+    </prompt>
+    <filled>
+      <if cond="talk">
+        <prompt>
+          One moment please.
+        </prompt>
+        <!-- Transfer to phone number 18001234567 -->
+        <transfer name="services" dest="phone://18001234567">
+          <filled>
+            <!-- Prompt the user if it is busy -->
+            <if cond="services == 'busy'">
+              <prompt>
+                Sorry, the phone line is busy. Please call back later.
+              </prompt>    
+            </if>
+          </filled>
+        </transfer>
+      <else/>
+        <prompt>
+          Goodbye.
+        </prompt>
+        <!-- Disconnect from the user -->
+        <disconnect/>
+        <prompt>
+          You should not hear this.
+        </prompt>
+      </if>
+    </filled>
+  </field>
+</form>
+</vxml>

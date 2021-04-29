@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<vxml application="AcmeRoot.vxml" lang="en-us" version="1.0">
+
+
+	
+	<menu id="main_menu" scope="dialog" dtmf="false">
+	
+  		<prompt>
+  			Welcome to Acme Corporation.  Here are your choices.  
+  			<enumerate>
+  				Say <value expr="_prompt"/> or press <value expr="_dtmf"/>.  
+  			</enumerate>
+  		</prompt> 
+
+	  <choice dtmf="1" next="AcmeTaxi.vxml"> 
+			Taxi
+  	  </choice> 
+
+	  <choice dtmf="2" next="AcmeAerospace.vxml"> 
+			Rocket back packs  
+  	  </choice> 
+  
+  	  <choice dtmf="3" next="AcmePetFood.vxml"> 
+  	  		<prompt>
+				<audio src="/path/to/prompts/petfood.wav">
+					Free bird seed
+  				</audio>
+			</prompt>
+  	  </choice> 
+  	
+  	  <choice dtmf="4" next="#more_info">
+  	  		More information about Acme  
+  	  </choice>
+	</menu>
+	
+	<form id="more_info">
+		<field name="information_request">
+			<prompt>
+				You can request more information 
+				in a number of areas.  
+				<enumerate/>
+			</prompt>
+			
+			<option dtmf="1" value="investor">
+				investor prospectus
+			</option>
+			
+			<option dtmf="2" value="tree_hugger">
+				environmental impact statement
+			</option>
+					
+			<option dtmf="3" value="job_seeker">
+				employment with acme
+			</option>				
+			
+			<filled>
+				<submit next="/imaginary/process_request" 
+					   method="post" 
+					   namelist="information_request"/>
+			</filled>		
+		</field>
+	</form>
+	
+	
+</vxml>

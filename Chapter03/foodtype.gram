@@ -1,0 +1,7 @@
+#JSGF V 1.0;
+grammar foodtype;
+
+<gimmie> = [gimmie | I want | I would like] [some];
+<pizza> = <gimmie> pizza | pizzas;
+<burger> = <gimmie> [ham] (burger | burgers);
+<donuts> = <gimmie> donut | donuts;

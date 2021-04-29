@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="1.0" >
+<menu>
+  <prompt>
+    Welcome to Tekey Tips. Please tell me your preferred language.
+  </prompt>
+  <choice next= "java">Java</choice>
+  <choice next ="delphi">Delphi</choice>
+  <choice next = "cplusplus">CPlusPlus</choice>
+  <noinput>
+    Please tell me the name of your favorite computer language.
+  </noinput> 
+  <nomatch>
+    The following languages are available:
+    <enumerate/>
+  </nomatch>
+  <help>
+    You may say one of the following:
+    <enumerate/>
+  </help>
+</menu>
+
+<form id="java">
+<block>
+  Java applets are short interpreted programs
+</block>
+</form>
+
+<form id="delphi">
+<block>
+  delphi is a pascal derived language
+</block>
+</form>
+
+<form id="cplusplus">
+<block>
+  c plus plus can write very efficient code
+</block>
+</form>
+  
+</vxml>

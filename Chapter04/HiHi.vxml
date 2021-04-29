@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<vxml lang="en-us" version="1.0">
+
+  <form id="foo1">
+    <block>
+      Hi!
+    </block>
+  </form>
+
+  <form id="foo2">
+    <block>
+      <prompt>
+        Hi!
+      </prompt>
+    </block>
+  </form>
+
+</vxml>

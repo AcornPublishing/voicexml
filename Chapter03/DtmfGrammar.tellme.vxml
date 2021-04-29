@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="1.0" >
+<form>
+
+<field name="color">
+  <prompt>
+    Please tell me the color you would like for your Woolen Nose Insulator
+  </prompt>
+  <help>
+    Your insulator is handcrafted by machine from the finest draylon, in one
+    of the following colors: Red, Green, Blue, Yellow.
+  </help>
+  <grammar type="application/x-jsgf">
+    Red {red} | Blue {blue} | Green {green} | Yellow {yellow}
+  </grammar>
+  <dtmf type="application/x-jsgf">
+    1 {red} | 2 {blue} | 3 {green} | 4 {yellow}
+  </dtmf>
+</field>
+
+<filled>You said <value expr="color"/> </filled>
+
+</form>
+  
+</vxml>

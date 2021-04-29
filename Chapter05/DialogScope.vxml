@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <!-- declare the variable user in a dialog -->
+  <var name="user" expr="'Mike Fraser'"/>
+    <field name="answer" type="boolean">
+      <prompt>
+    <!-- user has dialog scope.  It can be accessed here. -->
+        <value expr="user"/>, is that true?
+      </prompt>
+  </field>
+  <block>
+    <prompt>
+      <!-- answer has dialog scope. It can be accessed here. -->
+      You told me <value expr="answer"/>
+    </prompt>
+  </block>
+</form>
+</vxml>
+

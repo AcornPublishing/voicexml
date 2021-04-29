@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <block>
+         <!-- Declare the variable user. -->
+    <var name="user" expr="'Mike Fraser'"/>
+    <prompt>
+      Hi, <value expr="user"/>
+    </prompt>
+  </block>
+</form> 
+</vxml> 

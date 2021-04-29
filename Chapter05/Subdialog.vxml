@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form id="main">
+  <block>
+    <prompt>
+      Before calling the sub dialog.
+    </prompt>
+  </block>
+
+  <!-- Calling subdialog info with parameter name -->
+  <subdialog name="result" src="#info">
+    <param name="name" value="Susan Fraser"/> 
+   </subdialog>
+     
+  <block>
+    <prompt>
+      You are back to the main dialog.
+      The social security number is <value expr="result.ssn"/>
+      and phone number is <value expr="result.phone"/>
+    </prompt>
+  </block>
+</form>
+
+<!-- Subdialog defined here -->
+<form id="info">  
+  <var name="name"/>    <!-- Parameter passed to this subdialog -->
+  <var name="ssn" expr="''"/>
+  <var name="phone" expr="''"/>
+  <block>
+    <prompt>
+       You are in sub dialog.
+    </prompt>
+    <if cond="name=='Susan Fraser'">
+      <assign name="ssn" expr="'123-45-6789'"/>
+      <assign name="phone" expr="'1-800-1234567'"/>
+      <elseif cond="name=='Mike Fraser'"/>
+      <assign name="ssn" expr="'987-65-4321'"/>
+      <assign name="phone" expr="'1-800-7654321'"/>
+    </if>
+         <!-- Return variables ssn and phone to caller -->
+    <return namelist="ssn phone"/>
+  </block>
+</form>
+</vxml>

@@ -1,0 +1,8 @@
+<!-- Root3.vxml -->
+<?xml version="1.0"?>
+<vxml version="1.0">
+<!-- Transition to a form item in foo.vxml when the grammar is matched -->
+  <link next="foo.vxml#quit"> 
+    <grammar> (i want to quit) </grammar>
+  </link>
+</vxml>

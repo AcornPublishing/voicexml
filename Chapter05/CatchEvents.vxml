@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+<form>
+  <catch event="nomatch noinput">
+    Please say yes or no.
+  </catch>
+  <field name="action" type="boolean"> 
+    <prompt>
+      Should we continue?
+    </prompt>
+  </field>
+</form>
+</vxml>

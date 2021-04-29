@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<vxml version="1.0" application="ApplicationScopeRoot.vxml">
+<form>
+  <block>
+    <prompt>
+      <!-- user is accessed here. -->
+      Hi, <value expr="user"/>
+    </prompt>
+  </block>
+</form>
+</vxml>

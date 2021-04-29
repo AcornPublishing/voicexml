@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+ 
+<form id="getCreditInfo">
+  <block>
+    <prompt>Please have your credit card ready.</prompt>
+  </block>
+  <object classid="speechobject://nuance.so.SOCreditCardInfo" name="ccInfo">
+    <filled>
+      <prompt> 
+         Credit card type is <value expr="ccInfo.credit_card_type"/>
+         Credit card Number is <value expr="ccInfo.credit_card_number"/> 
+         Credit card Expiration Date is
+         <value expr="ccInfo.credit_card_date_month"/>        
+         <value expr="ccInfo.credit_card_date_year"/>               
+      </prompt>
+    </filled>
+  </object>
+</form>
+</vxml>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <var name="URLprefix" expr="'phone://'"/>
+  <block>
+    <prompt>
+      This is call transfer test.
+    </prompt> 
+  </block>
+
+  <!-- destexpr expression evaluates to phone://18001234567 -->
+  <transfer name="services" connecttimeout="300" 
+      destexpr="URLprefix + 18001234567" />
+</form>
+</vxml>

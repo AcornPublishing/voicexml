@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+
+   <form id="form1">
+    <block>
+        <prompt>Before loading your object</prompt>
+    </block>
+    <object classid="speechobject://SOSpell" name="spelling"
+     data="http://www.yourserver.com/voicexml/SOSpellPrompts.zip">
+     archive="http://www.yourserver.com/voicexml/SOSpell.jar">
+      <filled>
+        <prompt> 
+		you said <value expr="spelling"/>
+       </prompt>
+      </filled>
+    </object>
+
+  </form>
+</vxml>

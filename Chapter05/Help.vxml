@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <field name="action">
+    <prompt>
+      Welcome to the email service. How may I help you today?
+    </prompt>
+    <grammar>
+      [compose check]
+    </grammar>
+         <!-- Provide instructions on how to proceed -->
+    <help>
+      Say compose or check.
+    </help>
+    <filled>
+    <prompt>
+      You said <value expr="action"/>.
+    </prompt>
+    </filled>
+  </field>
+</form>
+</vxml>

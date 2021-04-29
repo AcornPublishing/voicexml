@@ -1,0 +1,23 @@
+<?xml version ="1.0"?>
+<vxml version="1.0">
+<form>
+  <field name="author">
+    <grammar src="favoriteauthor.gram" type="application/x-jsgf" />
+    <help>
+      Born in Columbia, he was awarded the Nobel prize for literature in 1982.
+    </help>
+    <nomatch>
+      Wrong! Try again!
+    </nomatch>
+    <nomatch count="4">
+      Philistine! It was Gabriel Garcia Marquez!
+      <goto next = "http://messages.mydomain//bye.vxml" />
+    </nomatch>
+    <prompt>"Who is the author of the book Of Love and Other Demons"</prompt>
+  </field>
+  <block>
+    Well done, you got it, you swot.
+    <goto next="http://messages.mydomain//winner.vxml" />
+  </block>
+</form>
+</vxml>

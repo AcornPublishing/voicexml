@@ -1,0 +1,96 @@
+
+SOSpell_CORE [
+  SOAlphaDS_AllAlpha:s {<spelling $s>}
+  SOAlphaDS_Digit:n {<spelling $n>}
+  space {<spelling space>}
+  dash {<spelling dash>}
+  underscore {<spelling underscore>}
+  at {<spelling at>}
+  dot {<spelling dot>}
+  finished {<spelling finished>}
+] 
+
+SOAlphaDS_AllAlpha [
+  SOAlphaDS_LETTER_A:a
+  SOAlphaDS_LETTER_B:a
+  SOAlphaDS_LETTER_C:a
+  SOAlphaDS_LETTER_D:a
+  SOAlphaDS_LETTER_E:a
+  SOAlphaDS_LETTER_F:a
+  SOAlphaDS_LETTER_G:a
+  SOAlphaDS_LETTER_H:a
+  SOAlphaDS_LETTER_I:a
+  SOAlphaDS_LETTER_J:a
+  SOAlphaDS_LETTER_K:a
+  SOAlphaDS_LETTER_L:a
+  SOAlphaDS_LETTER_M:a
+  SOAlphaDS_LETTER_N:a
+  SOAlphaDS_LETTER_O:a
+  SOAlphaDS_LETTER_P:a
+  SOAlphaDS_LETTER_Q:a
+  SOAlphaDS_LETTER_R:a
+  SOAlphaDS_LETTER_S:a
+  SOAlphaDS_LETTER_T:a
+  SOAlphaDS_LETTER_U:a
+  SOAlphaDS_LETTER_V:a
+  SOAlphaDS_LETTER_W:a
+  SOAlphaDS_LETTER_X:a
+  SOAlphaDS_LETTER_Y:a
+  SOAlphaDS_LETTER_Z:a
+] {return($a)}
+
+SOAlphaDS_AS_IN [
+  (as in)
+  (as)
+  (like)
+  (like in)
+  (for)
+]
+
+SOAlphaDS_LETTER_A [a (?(a SOAlphaDS_AS_IN) [alpha adam amanda apple])~0.01] 
+  {return(A)}
+SOAlphaDS_LETTER_B [b (?(b SOAlphaDS_AS_IN) [bravo baker boy bob])~0.01] {return(B)}
+SOAlphaDS_LETTER_C [c (?(c SOAlphaDS_AS_IN) [charlie cat charles])~0.01] {return(C)}
+SOAlphaDS_LETTER_D [d (?(d SOAlphaDS_AS_IN) [delta david dog doctor daniel])~0.01]
+  {return(D)}
+SOAlphaDS_LETTER_E [e (?(e SOAlphaDS_AS_IN) [echo edward edgar])~0.01] 
+  {return(E)}
+SOAlphaDS_LETTER_F [f (?(f SOAlphaDS_AS_IN) [foxtrot fox frank])~0.01] 
+  {return(F)}
+SOAlphaDS_LETTER_G [g (?(g SOAlphaDS_AS_IN) [golf george girl])~0.01] {return(G)}
+SOAlphaDS_LETTER_H [h (?(h SOAlphaDS_AS_IN) [hotel harry henry])~0.01] {return(H)}
+SOAlphaDS_LETTER_I [i (?(i SOAlphaDS_AS_IN) [idea])~0.01] {return(I)}
+SOAlphaDS_LETTER_J [j (?(j SOAlphaDS_AS_IN) [jeff julie jack john])~0.01] {return(J)}
+SOAlphaDS_LETTER_K [k (?(k SOAlphaDS_AS_IN) [kilo karen king])~0.01]     {return(K)}
+SOAlphaDS_LETTER_L [l (?(l SOAlphaDS_AS_IN) [lima larry linda louis lisa])~0.01]
+  {return(L)}
+SOAlphaDS_LETTER_M [m (?(m SOAlphaDS_AS_IN) [mike mary michael mother])~0.01]
+  {return(M)}
+SOAlphaDS_LETTER_N [n (?(n SOAlphaDS_AS_IN) [november nancy])~0.01] {return(N)}
+SOAlphaDS_LETTER_O [o (?(o SOAlphaDS_AS_IN) [oscar])~0.01]    {return(O)}
+SOAlphaDS_LETTER_P [p (?(p SOAlphaDS_AS_IN) [papa paul peter])~0.01]     {return(P)}
+SOAlphaDS_LETTER_Q [q (?(q SOAlphaDS_AS_IN) [queen quebec])~0.01]   {return(Q)}
+SOAlphaDS_LETTER_R [r (?(r SOAlphaDS_AS_IN) [romeo richard robert])~0.01]    {return(R)}
+SOAlphaDS_LETTER_S [s (?(s SOAlphaDS_AS_IN) [sierra sam])~0.01]   {return(S)}
+SOAlphaDS_LETTER_T [t (?(t SOAlphaDS_AS_IN) [tango tom thomas])~0.01]    {return(T)}
+SOAlphaDS_LETTER_U [u (?(u SOAlphaDS_AS_IN) [uniform uncle union])~0.01]  {return(U)}
+SOAlphaDS_LETTER_V [v (?(v SOAlphaDS_AS_IN) [victor victory])~0.01]   {return(V)}
+SOAlphaDS_LETTER_W [w (?(w SOAlphaDS_AS_IN) [whiskey walter william])~0.01]  {return(W)}
+SOAlphaDS_LETTER_X [x (?(x SOAlphaDS_AS_IN) [xray])~0.01]    {return(X)}
+SOAlphaDS_LETTER_Y [y (?(y SOAlphaDS_AS_IN) [yankee yellow])~0.01]   {return(Y)}
+SOAlphaDS_LETTER_Z [z (?(z SOAlphaDS_AS_IN) [zebra])~0.01]     {return(Z)}
+
+SOAlphaDS_Zero [zero oh] {return("0")}
+SOAlphaDS_Non_zero [one {return("1")}
+          two {return("2")}
+          three {return("3")}
+          four {return("4")}
+          five {return("5")}
+          six {return("6")}
+          seven {return("7")}
+          eight {return("8")}
+          nine {return("9")}
+]
+
+SOAlphaDS_Digit [ SOAlphaDS_Zero:n SOAlphaDS_Non_zero:n ] {return($n)}
+

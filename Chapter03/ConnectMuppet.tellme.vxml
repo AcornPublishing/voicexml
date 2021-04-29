@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="1.0" >
+<form>
+<field name="connectMuppet">
+  <prompt>Which Muppet would you like to speak to?</prompt>
+  <grammar>
+    kermit
+  </grammar>
+  <nomatch>
+    I'm afraid only Kermit and Miss Piggy are available today
+  </nomatch>
+  <filled>
+    <if cond="connectMuppet=='kermit'">
+      <goto next="speaktoKermit" />
+    <else/>
+      <goto next="speaktoMissPiggy" />
+    </if>
+  </filled>
+</field>
+</form>
+
+<form id="speaktoKermit">
+<block>
+  I'm Kermit
+</block>
+</form>
+<form id="speaktoMissPiggy">
+<block>
+  
+I'm Miss Piggy
+</block>
+</form>
+  
+</vxml>

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+<form>
+  <var name="user" expr="'Mike Fraser'"/>
+  <field name="pin" type="digits">
+    <prompt>
+      What is your pin?
+    </prompt>
+    <filled>
+      <!-- Submit user and pin to server side script -->
+      <submit next="http://www.yoursite.com/yourscript.asp" 
+              namelist="user pin"/>
+      </filled>
+    </field>
+</form>
+</vxml>

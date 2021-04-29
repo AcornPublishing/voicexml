@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE vxml PUBLIC "-//BeVocal Inc//VoiceXML 1.0//EN" 
+"http://cafe.bevocal.com/libraries/dtd/vxml1-0-bevocal.dtd">
+<vxml version="1.0">
+<form id="form1">
+  <object classid="speechobject://bevocal.cafe.SOCityState" name="cityState"/>
+
+  <field name="yesno1">
+    <prompt><value expr="cityState"/>
+        <audio src="is_that_correct.wav"> is that correct?
+        </audio> 
+    </prompt>
+    <grammar>[yes no]</grammar>
+    <filled>
+      <if cond="yesno1=='no'">
+        <clear namelist="cityState"/>
+      </if>
+    </filled>
+  </field>
+    
+  <block>
+    <assign name="city" expr="cityState.city"/>
+    <assign name="state" expr="cityState.state"/>
+  </block>
+
+  <object classid="speechobject://bevocal.cafe.SOStreet" name="streetName"> 
+    <param name="cityName" expr="cityState.city" />
+    <param name="stateName" expr="cityState.state" />
+  </object>
+    
+  <field name="yesorno2">
+    <prompt><value expr="streetName"/>
+      <audio src="is_that_correct.wav"> is that correct? 
+      </audio>
+    </prompt>
+    <grammar>[yes no]</grammar>
+    <filled>
+      <if cond="yesorno2=='no'">
+        <clear namelist="streetName"/>
+      </if>
+    </filled>
+  </field>
+
+  <object classid="speechobject://bevocal.cafe.SOStreetNumber" 
+          name="streetNumber"> 
+    <param name="cityName" expr="cityState.city" />
+    <param name="stateName" expr="cityState.state" /> 
+    <param name="streetName" expr="streetName.street"/>
+  </object>
+     
+  <field name="yesorno3">
+    <prompt>You said <value expr="streetNumber"/>
+      <audio src="is_that_correct.wav"> is that correct? 
+      </audio>
+    </prompt>
+    <grammar>[yes no]</grammar>
+    <filled>
+      <if cond="yesorno3=='no'">
+        <clear namelist="streetNumber"/>
+      </if>
+    </filled>
+  </field>
+</form>
+</vxml>

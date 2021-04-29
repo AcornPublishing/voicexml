@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<vxml verion="1.0" >
+  <!-- This incomplete example shows how tapered prompts can be used -->
+
+  <var name="form_send_entered" expr="0"/>
+  ...
+  <form id="send">
+  
+    <block>
+      <assign name="form_send_entered" expr="form_send_entered + 1"/>
+    </block>
+  
+    <prompt cond="form_send_entered &gt; 1">
+      Recipient?
+    </prompt>
+    
+    <prompt cond="form_send_entered &lt;= 1">
+      Please tell me the recipient's name or email address.
+    </prompt>
+  ...
+  </form>
+  ...
+</vxml>

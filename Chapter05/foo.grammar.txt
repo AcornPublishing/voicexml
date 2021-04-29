@@ -1,0 +1,15 @@
+Object [
+   (Color Item)
+   Color
+   Item
+]
+
+Color [
+   red  {<color red>}
+   blue {<color blue>}
+]
+ 
+Item [
+   ball {<item ball>}
+   box  {<item box>}
+]

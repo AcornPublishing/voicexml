@@ -1,0 +1,223 @@
+<xsd:schema 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        	xmlns:myr="http://www.myrubberbands.com/MYR"
+        	targetNamespace="http://www.myrubberbands.com/MYR"
+        	elementFormDefault="unqualified"
+        	attributeFormDefault="unqualified">
+
+ <xsd:annotation>
+  <xsd:documentation xml:lang="en">
+   MyRubberbands.com Database Export Schema For General Use 
+   Copyright 2001 My.com. All rights reserved.
+  </xsd:documentation>
+ </xsd:annotation>
+
+
+ <!-- Top Level Element --> 
+ 
+ <xsd:element 	name="myrubberbands" type="MyRubberbandsType"/>
+
+
+ <!-- Simple Types -->
+
+ <xsd:simpleType name="OrderStatusEnumerationType">
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="Processing"/>
+		<xsd:enumeration value="Sent To Warehouse"/>
+		<xsd:enumeration value="Shipped"/>
+		<xsd:enumeration value="Finished"/>
+	</xsd:restriction>
+ </xsd:simpleType>
+
+ <xsd:simpleType name="ExportTypeEnumerationType">
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="single"/>
+		<xsd:enumeration value="multiple"/>
+	</xsd:restriction>
+ </xsd:simpleType>
+
+ <xsd:simpleType name="DatabaseIDType">
+	<xsd:restriction base="xsd:positiveInteger"/>
+ </xsd:simpleType>
+
+ <!-- 
+	Since these descriptions come from a database, some kind of 
+	script to maintain and update this schema would be useful.  
+ -->
+
+ <xsd:simpleType name="CustomerAddressEnumerationType">
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="Billing And Shipping Address"/>
+		<xsd:enumeration value="Shipping To Address "/>
+		<xsd:enumeration value="Billing Address"/>
+		<xsd:enumeration value="Alternate E-Mail Address"/>
+	</xsd:restriction>
+ </xsd:simpleType>
+
+ <!-- Complex Types --> 
+
+ <xsd:complexType name="MyRubberbandsType">
+
+  <xsd:sequence>
+   <xsd:element name="customer_record" type="CustomerRecordType" 
+		minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element name="product_list" type="ProductListType" 
+		minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+
+  <xsd:attribute	name="export_type" 
+			type="ExportTypeEnumerationType"/>
+ </xsd:complexType>
+
+
+ <xsd:complexType name="CustomerRecordType">
+  <xsd:sequence>
+   <xsd:element name="customer" type="CustomerType" 
+		minOccurs="1" maxOccurs="1">
+	<xsd:key name="KeyMainCustomerID">
+		<xsd:selector xpath="/myrubberbands/customer_record/customer"/>
+		<xsd:field xpath="@id"/>
+ 	</xsd:key>
+    </xsd:element>
+   <xsd:element name="order_history" type="OrderHistoryType" 
+		minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+
+ <xsd:complexType name="CustomerType">
+	<xsd:sequence>
+		<xsd:element 	name="firstname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		<xsd:element 	name="middle" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		<xsd:element 	name="lastname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		<xsd:element 	name="username_or_email" 
+				type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		<xsd:element 	name="password_or_pin" type="xsd:string" 
+				minOccurs="1" maxOccurs="1"/>
+		<xsd:element 	name="date_joined" type="xsd:dateTime" 
+				minOccurs="1" maxOccurs="1"/>
+		<xsd:element 	name="date_lastchg" type="xsd:dateTime" 
+				minOccurs="1" maxOccurs="1"/>
+
+		<xsd:element 	name="customer_address" type="CustomerAddressType" 
+				minOccurs="0" maxOccurs="unbounded">
+
+		   <!-- 
+			The pair customer_id, address type is itself a key 
+		   --> 
+
+			<xsd:key name="KeyCustomerAddressID">
+			  <xsd:selector xpath="/myrubberbands/customer_record/customer/customer_address"/>
+			  <xsd:field xpath="@customer_id  @address_type"/>
+ 			</xsd:key>
+
+		   <!-- 
+			The customer_id attribute of customer_address must match the id 
+			attribute of the customer tag. 
+		   -->
+		   <xsd:keyref name="customerAddressToCustomerKey" refer="KeyMainCustomerID">
+			<xsd:selector 	xpath="/myrubberbands/customer_record/customer/customer_address"/>
+			<xsd:field	xpath="@customer_id"/>	
+		   </xsd:keyref>
+
+		</xsd:element>	
+	</xsd:sequence>
+	<xsd:attribute name="id" type="DatabaseIDType"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="CustomerAddressType">
+   	<xsd:sequence>
+	  <xsd:element 	name="address1" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+	  <xsd:element 	name="address2" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+	  <xsd:element 	name="city" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+	  <xsd:element 	name="state_or_prov" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+	  <xsd:element 	name="postalcode" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+	  <xsd:element 	name="email" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+	  <xsd:element 	name="phone" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+	  <xsd:element 	name="country" type="xsd:string"
+			minOccurs="0" maxOccurs="1"/>
+   	</xsd:sequence>
+
+	<xsd:attribute name="address_type" type="CustomerAddressEnumerationType"/>
+	<xsd:attribute name="customer_id" type="DatabaseIDType"/>
+
+ </xsd:complexType>
+
+
+ <xsd:complexType name="OrderHistoryType">
+	<xsd:sequence>
+		<xsd:element 	name="order" type="OrderType" 
+				minOccurs="1" maxOccurs="unbounded"/>
+	</xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="OrderType">
+	<xsd:sequence>
+		<xsd:element 	name="customer_address" type="CustomerAddressType" 
+				minOccurs="1" maxOccurs="1">
+		   <xsd:keyref name="ToCustomerAddrKey" refer="KeyCustomerAddressID">
+			<xsd:selector 	xpath="/myrubberbands/customer_record/customer/order_history/order/customer_address"/>
+			<xsd:field	xpath="@customer_id @address_type"/>	
+		   </xsd:keyref>			
+		</xsd:element>
+		<xsd:element	name="order_date" type="xsd:dateTime" 
+				minOccurs="1" maxOccurs="1">
+		  <xsd:complexType>
+		    <xsd:attribute name="sayas" type="xsd:string"/>
+		  </xsd:complexType>
+		</xsd:element>
+		<xsd:element	name="order_status" type="OrderStatusEnumerationType"  
+				minOccurs="1" maxOccurs="1"/>
+		<xsd:element	name="tax" type="xsd:float" 
+				minOccurs="1" maxOccurs="1"/>
+		<xsd:element	name="shipping_charge" type="xsd:float" 
+				minOccurs="1" maxOccurs="1"/>
+		<xsd:element	name="total_charge" type="xsd:float" 
+				minOccurs="1" maxOccurs="1"/>
+
+		<xsd:element	name="product" type="ProductType" 
+					minOccurs="1" maxOccurs="unbounded">
+
+		  <xsd:keyref name="ToProductKey" refer="KeyProductID">
+	  	    <xsd:selector xpath="/myrubberbands/customer_record/customer/order_history/order/product"/>
+	  	    <xsd:field	  xpath="@id"/>	
+		  </xsd:keyref>
+		</xsd:element>
+	</xsd:sequence>
+	<xsd:attribute name="id" type="DatabaseIDType"/>
+
+ </xsd:complexType>
+
+ <xsd:complexType name="ProductListType">
+	<xsd:sequence>
+		<xsd:element 	name="product" type="xsd:string" 
+				minOccurs="1" maxOccurs="unbounded">
+		</xsd:element>
+	</xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="ProductType">
+	<xsd:sequence>
+		<xsd:element 	name="product" type="xsd:string" 
+				minOccurs="1" maxOccurs="unbounded">
+
+			<xsd:key name="KeyProductID">
+			  <xsd:selector xpath="/myrubberbands/product_list/product"/>
+			  <xsd:field xpath="@id"/>
+ 			</xsd:key>
+		</xsd:element>
+	</xsd:sequence>
+	<xsd:attribute 	name="id" type="DatabaseIDType"/>
+	<xsd:attribute  name="name" type="xsd:string"/>
+	<xsd:attribute 	name="quantity" type="xsd:integer"/>
+
+ </xsd:complexType>
+
+</xsd:schema>
+

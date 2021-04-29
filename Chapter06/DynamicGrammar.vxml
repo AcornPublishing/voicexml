@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+  <!-- This incomplete example shows how dynamic grammars can be used -->
+  ...
+  <!--form asks for the user's name and password-->
+  <form id="user">
+    
+   <!--field asks for the user's name -->
+    <field name="username">
+      <prompt>    
+        Your name?
+     </prompt>
+     ...
+    </field>
+    
+    <!--field asks for the user's password -->
+    <field name="password">
+      <prompt>
+        And your password?
+      </prompt>
+      ...
+    </field>
+
+  </form>
+  
+  <!--form sends the email -->
+  <form id="send">
+  
+    <object classid="method://email/generate_nicknames_grammar"    
+          name="nicknames">
+      <param name="user" expr="username"/>
+      <param name="psword" expr="password"/>
+    </object>
+  
+    <!--field asks for the recipient's nickname -->
+    <field>
+      <prompt>
+        To whom is the message to be sent?
+      </prompt>
+      <grammar src="nicknames.gram" type="application/x-jsgf"/>
+    </field>
+  </form>
+  ...
+</vxml>

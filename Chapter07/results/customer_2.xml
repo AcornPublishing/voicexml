@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<myrubberbands export_type="single">
+   <customer_record>
+	<customer id="2">
+	  <firstname>Jane</firstname>
+	  <middle>Anne</middle>
+	  <lastname>Doe</lastname>
+	  <username_or_email>jane@anonymous.net</username_or_email>
+	  <password_or_pin>bigsecret</password_or_pin>
+	  <date_joined>2001-06-27T10:35:16</date_joined>
+	  <date_lastchg>2001-06-27T10:35:16</date_lastchg>
+	</customer>
+	<customer_address 	address_type="Ship To Address"  
+				customer_id="2">  
+	  <address1>11 Main Street</address1> 
+	  <address2></address2> 
+	  <city>Doylestown</city> 
+	  <state_or_prov>PA</state_or_prov> 
+	  <postalcode>18901</postalcode> 
+	  <email></email> 
+ 	  <phone>2155551212</phone> 
+	</customer_address> 
+
+	<customer_address 	address_type="Billing Address"  
+				customer_id="2">  
+	  <address1>1231 State Street</address1> 
+	  <address2>Suite 14</address2> 
+	  <city>Doylestown</city> 
+	  <state_or_prov>PA</state_or_prov> 
+	  <postalcode>18901</postalcode> 
+	  <email></email> 
+ 	  <phone>6105551212</phone> 
+	</customer_address> 
+
+	<order_history customer_id="2">
+	</order_history>
+   </customer_record>
+   <product_list>
+   <product id="1" name="MIXED1000" price="1.99">Mixed Bag of 1000 Rubber Bands</product>
+   <product id="2" name="MIXED5000" price="4.09">Mixed Bag of 5000 Rubber Bands</product>
+   <product id="3" name="RED1000" price="2.19">Bag of 1000 Red Rubber Bands</product>
+   <product id="4" name="RED10000" price="17.49">Bag of 10000 Red Rubber Bands</product>
+   <product id="5" name="BLUE1000" price="0.99">Bag of 1000 Blue Rubber Bands</product>
+   <product id="6" name="BLUE10000" price="8.99">Bag of 10000 Blue Rubber Bands</product>
+   </product_list>
+</myrubberbands>

@@ -1,0 +1,41 @@
+<!-- Foo.vxml -->
+<?xml version="1.0" ?>
+<vxml version="1.0" application="root3.vxml">
+  <!-- Transition to form help when the grammar is matched -->
+  <link next="#help">
+    <grammar>(i need help)</grammar>
+  </link>
+  
+  <form>
+    <field name="test">
+       <!-- Throw help event when the grammar is matched -->
+      <link event="help">
+        <grammar> (i don't know what to say) </grammar>
+      </link>
+      <help>
+        <reprompt/>
+      </help>
+      <prompt>
+        To get help, say I need help.
+        To quit the system, say I want to quit.
+      </prompt>
+    </field>
+  </form>
+
+  <form id="help">
+    <block>
+      <prompt>
+        You are in the help form.
+      </prompt>
+    </block>
+  </form>
+
+  <form id="quit">
+    <block>
+      <prompt>
+        Thanks for using the service. Goodbye.
+      </prompt>
+      <exit/>
+    </block>
+  </form>
+</vxml>

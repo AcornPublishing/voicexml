@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+   
+<vxml version="1.0">
+   <meta name="author" content="Underpaid Myrubberbands Engineer"/>
+   <meta name="copyright" content="Copyright (C) 2001 Myrubberbands.com, Inc."/>
+   <meta name="description" content="Voice Interface for #1"/>
+   <var name="customer_ani" expr="session.telephone.ani"/>
+   <var name="customer_dnis" expr="session.telephone.dnis"/>
+   <var name="session_error_count" expr="0"/>
+   <var name="form_pointer" expr="'mainMenu'"/>
+   <var name="user_command" expr="''"/>
+   <help count="1">
+	What seems to be the trouble? 
+</help>
+   <help count="2">
+	Isn't this easy enough to understand?
+</help>
+   <help count="3">John, are you stupid or something? 
+</help>
+   <catch event="telephone.disconnect"/>
+   <link next="#mainMenu">
+      <grammar type="application/x-jsgf"> main menu </grammar>
+   </link>
+   <form id="welcomeMessage">
+      <block>
+         <prompt bargein="false" timeout="0.1s">
+			Hello, John.  
+			Welcome to the my rubber bands dot com voice order 
+			status system.  
+		</prompt>
+         <goto next="#mainMenu"/>
+      </block>
+   </form>
+   <form id="mainMenu">
+      <nomatch>
+         <goto next="#errorHandler"/>
+      </nomatch>
+      <noinput>
+         <goto next="#mainMenu"/>
+      </noinput>
+      <block>
+         <assign name="form_pointer" expr="'mainMenu'"/>
+      </block>
+      <field name="userSaid">
+         <prompt bargein="true" timeout="3s">
+			This is the main menu.  
+			<break msecs="500"/>
+			You can say product list to hear a list of products.  
+			<break msecs="500"/>	
+			You can say order status to check your order status.   
+			<break msecs="500"/>			
+			You can say frequently asked questions to get more information. 
+			<break msecs="500"/>
+			You can always say main menu to return to this menu, or help 
+			for additional help.  
+		</prompt>
+         <grammar type="application/x-jsgf">
+			list
+			product list | 
+			more information |
+			frequently asked questions | 
+			questions | 
+			order status 
+		</grammar>
+         <filled>
+            <assign name="user_command" expr="userSaid"/>
+            <goto next="#navigator"/>
+         </filled>
+      </field>
+   </form>
+   <form id="orderStatus">
+      <noinput>
+         <assign name="user_command" expr="'main menu'"/>
+         <goto next="#navigator"/>
+      </noinput>
+      <nomatch>
+         <goto next="#errorHandler"/>
+      </nomatch>
+      <field name="userSaid">
+         <prompt bargein="true" timeout="1s">
+			This is a list of all your orders.  
+<break msecs="500"/>
+            <sayas class="date">June 27, 2001 at 10 35 hours,
+			</sayas> 
+			you placed an order.  Say order number 
+			1
+			to hear more about it.
+			<break msecs="500"/>
+            <sayas class="date">June 27, 2001 at 10 35 hours,
+			</sayas> 
+			you placed an order.  Say order number 
+			2
+			to hear more about it.
+			<break msecs="500"/>
+         </prompt>
+         <grammar type="application/x-jsgf">
+			list | 
+			product list | 
+			more information |
+			frequently asked questions | 
+			questions | 
+			order status | 
+
+
+			order number 1 |
+
+			order number 2 |
+
+			buy me
+		</grammar>
+         <filled>
+            <assign name="form_pointer" expr="'productList'"/>
+            <assign name="user_command" expr="userSaid"/>
+            <goto next="#navigator"/>
+         </filled>
+      </field>
+   </form>
+   <form id="order_1">
+      <noinput>
+         <assign name="user_command" expr="'order status'"/>
+         <goto next="#navigator"/>
+      </noinput>
+      <nomatch>
+         <goto next="#errorHandler"/>
+      </nomatch>
+      <block>
+         <assign name="form_pointer" expr="'order_1'"/>
+      </block>
+      <field name="userSaid">
+         <prompt bargein="true" timeout="1s">
+			This order was placed on <sayas class="date">June 27, 2001 at 10 35 hours</sayas>.  
+			<break msecs="500"/>
+			The order consisted of 
+
+			quantity 3 of product 
+			Mixed Bag of 1000 Rubber Bands<break msecs="500"/>
+			quantity 1 of product 
+			Bag of 1000 Red Rubber Bands<break msecs="500"/>
+			The total of the order was 
+			<sayas class="currency">
+			$2.48</sayas>.  
+			The status of this order is 
+			Processing.  
+		</prompt>
+         <grammar type="application/x-jsgf">
+			list | 
+			product list | 
+			more information |
+			frequently asked questions | 
+			questions | 
+			order status | 
+
+			order number 1 | 
+
+			order number 2 | 
+
+			buy me
+		</grammar>
+         <filled>
+            <assign name="form_pointer" expr="'productList'"/>
+            <assign name="user_command" expr="userSaid"/>
+            <goto next="#navigator"/>
+         </filled>
+      </field>
+   </form>
+   <form id="order_2">
+      <noinput>
+         <assign name="user_command" expr="'order status'"/>
+         <goto next="#navigator"/>
+      </noinput>
+      <nomatch>
+         <goto next="#errorHandler"/>
+      </nomatch>
+      <block>
+         <assign name="form_pointer" expr="'order_2'"/>
+      </block>
+      <field name="userSaid">
+         <prompt bargein="true" timeout="1s">
+			This order was placed on <sayas class="date">June 27, 2001 at 10 35 hours</sayas>.  
+			<break msecs="500"/>
+			The order consisted of 
+
+			quantity 1 of product 
+			Mixed Bag of 5000 Rubber Bands<break msecs="500"/>
+			quantity 5 of product 
+			Bag of 10000 Red Rubber Bands<break msecs="500"/>
+			The total of the order was 
+			<sayas class="currency">
+			$3.99</sayas>.  
+			The status of this order is 
+			Processing.  
+		</prompt>
+         <grammar type="application/x-jsgf">
+			list | 
+			product list | 
+			more information |
+			frequently asked questions | 
+			questions | 
+			order status | 
+
+			order number 1 | 
+
+			order number 2 | 
+
+			buy me
+		</grammar>
+         <filled>
+            <assign name="form_pointer" expr="'productList'"/>
+            <assign name="user_command" expr="userSaid"/>
+            <goto next="#navigator"/>
+         </filled>
+      </field>
+   </form>
+   <form id="productList">
+      <noinput>
+         <assign name="user_command" expr="'main menu'"/>
+         <goto next="#navigator"/>
+      </noinput>
+      <nomatch>
+         <goto next="#errorHandler"/>
+      </nomatch>
+      <field name="userSaid">
+         <prompt bargein="true" timeout="1s">
+			This is a list of products available from my 
+			rubber bands dot com.  
+			You can say buy me to place an order.  
+
+			Product Mixed Bag of 1000 Rubber Bands.  Your price is 
+			<sayas class="currency"> 
+			$1.99</sayas>.  
+			<break msecs="500"/>
+			Product Mixed Bag of 5000 Rubber Bands.  Your price is 
+			<sayas class="currency"> 
+			$4.09</sayas>.  
+			<break msecs="500"/>
+			Product Bag of 1000 Red Rubber Bands.  Your price is 
+			<sayas class="currency"> 
+			$2.19</sayas>.  
+			<break msecs="500"/>
+			Product Bag of 10000 Red Rubber Bands.  Your price is 
+			<sayas class="currency"> 
+			$17.49</sayas>.  
+			<break msecs="500"/>
+			Product Bag of 1000 Blue Rubber Bands.  Your price is 
+			<sayas class="currency"> 
+			$0.99</sayas>.  
+			<break msecs="500"/>
+			Product Bag of 10000 Blue Rubber Bands.  Your price is 
+			<sayas class="currency"> 
+			$8.99</sayas>.  
+			<break msecs="500"/>
+         </prompt>
+         <grammar type="application/x-jsgf">
+			list | 
+			product list | 
+			more information |
+			frequently asked questions | 
+			questions | 
+			order status | 
+			buy me 
+		</grammar>
+         <filled>
+            <assign name="form_pointer" expr="'productList'"/>
+            <assign name="user_command" expr="userSaid"/>
+            <goto next="#navigator"/>
+         </filled>
+      </field>
+   </form>
+   <form id="placeOrder">
+      <block>
+         <prompt bargein="false" timeout="1s">
+			Transferring your call to customer service. 
+		</prompt>
+      </block>
+      <transfer name="callSales" dest="MYRUBBERBND" connecttimeout="30s" bridge="true"/>
+      <block>
+         <goto next="#mainMenu"/>
+      </block>
+   </form>
+   <form id="FAQ">
+      <noinput>
+         <assign name="user_command" expr="'main menu'"/>
+         <goto next="#navigator"/>
+      </noinput>
+      <nomatch>
+         <goto next="#FAQ"/>
+      </nomatch>
+      <field name="userSaid">
+         <prompt bargein="true" timeout="1s">
+			This is the my rubber bands dot com frequently asked questions list. 
+			Did you know that my rubber bands dot com offers over a hundred 
+			different types of rubberbands? 
+			<break msecs="500"/>
+			First question.  I keep losing my rubber bands.  Where should I 
+			keep them? 
+			<break msecs="500"/>
+			You can keep rubber bands on a door knob.  That way they are 
+			always nearby when needed.  
+			<break msecs="500"/>
+			Second question.  I am trying to shoot rubber bands.  What should 
+			I do?
+			<break msecs="500"/>
+			You'll shoot your eye out!
+		</prompt>
+         <grammar type="application/x-jsgf">
+			list | 
+			product list | 
+			more information |
+			frequently asked questions | 
+			questions | 
+			order status 
+		</grammar>
+         <filled>
+            <assign name="form_pointer" expr="'FAQ'"/>
+            <assign name="user_command" expr="userSaid"/>
+            <goto next="#navigator"/>
+         </filled>
+      </field>
+   </form>
+   <form id="navigator">
+      <block>
+         <if cond="user_command == 'product list' || user_command == 'list'">
+            <goto next="#productList"/>
+            <elseif cond="user_command  == 'questions' ||       user_command == 'frequently asked questions' ||       user_command == 'more information'"/>
+            <goto next="#FAQ"/>
+            <elseif cond="user_command == 'order status'"/>
+            <goto next="#orderStatus"/>
+            <elseif cond="user_command == 'buy me'"/>
+            <goto next="#placeOrder"/>
+            <elseif cond="user_command == 'order number 1'"/>
+            <goto next="#order_1"/>
+            <elseif cond="user_command == 'order number 2'"/>
+            <goto next="#order_2"/>
+            <else/>
+            <goto next="#mainMenu"/>
+         </if>
+      </block>
+   </form>
+   <form id="errorHandler">
+      <block>
+         <assign name="session_error_count" expr="session_error_count + 1"/>
+         <if cond="session_error_count &lt; 4">
+            <prompt bargein="false" timeout="0.1s">
+				I'm sorry, but I'm unable to understand you.  
+			</prompt>
+            <if cond="session_error_count &gt; 2">
+               <prompt bargein="false" timeout="0.1s">
+					It seems I am having trouble.  
+				</prompt>
+            </if>
+            <goto next="#navigator"/>
+            <else/>
+            <prompt bargein="false" timeout="0.1s">
+				I'm sorry, but I'm having a lot of difficulty 
+				understanding you.  If you are in a noisy environment, 
+				please call back later.  
+			</prompt>
+            <exit/>
+         </if>
+      </block>
+   </form>
+</vxml>
+   

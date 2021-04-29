@@ -1,0 +1,4 @@
+<firstNames> = [ Gabriel | Garcia | Gabriel Garcia ];
+<mumble> = err | umm | ahh;
+<author> = <firstNames> Marquez;
+<answer> = <mumble>* <author>;

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+  <link next="http://www.mysite.com/main.vxml">
+    <grammar> main menu </grammar>
+  </link>
+  <link next="http://www.mysite.com/email.vxml">
+    <grammar> email </grammar>
+  </link>
+   <link next="http://www.mysite.com/stock.vxml">
+    <grammar> stock </grammar>
+  </link>
+</vxml>

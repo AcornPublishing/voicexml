@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <field name="number" type="number">
+    <prompt>
+      Tell me a non-zero number.
+    </prompt>
+         <!-- The invalid _number event is caught here -->
+    <catch event="invalid_number">
+      <prompt>
+        Zero is not allowed.
+      </prompt>
+    </catch>
+    <filled>
+      <if cond="number == 0">
+          <!-- invalid_number is thrown here -->
+        <throw event="invalid_number"/>
+      </if>
+      <prompt>
+         You said <value expr="number"/>
+      </prompt>
+    </filled>
+  </field>
+</form>
+</vxml>

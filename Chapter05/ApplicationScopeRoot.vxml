@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+  <!-- user has an application scope. -->
+  <var name="user" expr="'Mike Fraser'"/>
+</vxml>

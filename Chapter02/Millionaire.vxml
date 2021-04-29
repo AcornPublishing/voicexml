@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+  <menu id="HundredDollarQuestion">
+   <prompt>Welcome to Who Wants To Be A Millionaire. Here is your first
+     question, worth $100. Which of the following is not an animal?
+     <enumerate/></prompt>
+   <choice next="#IncorrectAnswer">
+     Cow </choice>
+   <choice next="#IncorrectAnswer">
+     Pig </choice>
+   <choice next="#CorrectAnswer">
+     Cactus </choice>
+   <choice next="#IncorrectAnswer">
+     Goat </choice>
+   <noinput>I am going to have to press you now. Which of the following living things is not an animal? <enumerate/></noinput>
+  </menu>
+  <form id="CorrectAnswer">
+   <block>
+     Congratulations, that is the correct answer.
+     <disconnect/>
+   </block>
+  </form>
+  <form id="IncorrectAnswer">
+   <block>
+     That is not the correct answer. Game over!
+     <disconnect/>
+   </block>
+  </form>
+</vxml>

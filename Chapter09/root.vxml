@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<vxml version="1.0">
+  <meta name="maintainer" content="jtang@openland.com" /> 
+  <meta name="application" content="email and calendar" /> 
+
+  <property name="fetchaudio" value="http://www.openland.com/wrox/waiting.wav"/>
+
+  <catch event="telephone.disconnect.hangup">
+    <log> Entering catch event hangup </log>
+    <goto next="http://www.openland.com/wrox/end.asp"/>
+    <log> Exiting catch event hangup </log>
+  </catch>
+</vxml>

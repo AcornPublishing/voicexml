@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+<form> 
+  <!-- Form level grammar -->     
+  <grammar src="foo.grammar#Object"/>
+
+  <initial>
+    What object do you want?
+  </initial>
+
+  <!-- Ask for color -->
+  <field name="color">
+    <grammar src="foo.grammar#Color"/>
+    <prompt>
+      What is the color of the object, red or blue?
+    </prompt>
+  </field>
+
+  <!-- Ask for item -->
+  <field name="item">
+    <grammar src="foo.grammar#Item"/>
+    <prompt>
+      What is the name of the object, ball or box?
+    </prompt>
+     </field>
+
+  <block>
+    <prompt>
+      You said <value expr="color"/> <value expr="item"/>.
+    </prompt>
+  </block>
+</form>
+</vxml>

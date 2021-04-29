@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<myrubberbands export_type="single">
+   <customer_record>
+	<customer id="1">
+	  <firstname>John</firstname>
+	  <middle>Quincy</middle>
+	  <lastname>Public</lastname>
+	  <username_or_email>jqp@foo.foo.com</username_or_email>
+	  <password_or_pin>bar</password_or_pin>
+	  <date_joined>2001-06-27T10:35:16</date_joined>
+	  <date_lastchg>2001-06-27T10:35:16</date_lastchg>
+	</customer>
+	<customer_address 	address_type="Ship To Address"  
+				customer_id="1">  
+	  <address1>4321 La Place Ct</address1> 
+	  <address2>Ste 306</address2> 
+	  <city>Carlsbad</city> 
+	  <state_or_prov>CA</state_or_prov> 
+	  <postalcode>92008</postalcode> 
+	  <email></email> 
+ 	  <phone>7605551212</phone> 
+	</customer_address> 
+
+	<customer_address 	address_type="Billing And Shipping Address"  
+				customer_id="1">  
+	  <address1>123 Santa Barbara Place</address1> 
+	  <address2></address2> 
+	  <city>San Diego</city> 
+	  <state_or_prov>CA</state_or_prov> 
+	  <postalcode>92109</postalcode> 
+	  <email></email> 
+ 	  <phone>8585551212</phone> 
+	</customer_address> 
+
+	<customer_address 	address_type="Alternate E-Mail Address"  
+				customer_id="1">  
+	  <address1></address1> 
+	  <address2></address2> 
+	  <city></city> 
+	  <state_or_prov></state_or_prov> 
+	  <postalcode></postalcode> 
+	  <email>john@his.office</email> 
+ 	  <phone></phone> 
+	</customer_address> 
+
+	<order_history customer_id="1">
+	   <order id="1">
+	     <customer_address address_type="Ship To Address" customer_id="1"/>
+	     <order_date sayas="June 27, 2001 at 10 35 hours">2001-06-27T10:35:16</order_date>
+	     <order_status>Processing</order_status>
+	     <tax>0.09</tax>
+	     <shipping_charge>0.4</shipping_charge>
+	     <total_charge>2.48</total_charge>
+	     <product id="1" quantity="3"/>
+	     <product id="3" quantity="1"/>
+	   </order>
+	   <order id="2">
+	     <customer_address address_type="Billing And Shipping Address" customer_id="1"/>
+	     <order_date sayas="June 27, 2001 at 10 35 hours">2001-06-27T10:35:16</order_date>
+	     <order_status>Processing</order_status>
+	     <tax>0.15</tax>
+	     <shipping_charge>0.78</shipping_charge>
+	     <total_charge>3.99</total_charge>
+	     <product id="2" quantity="1"/>
+	     <product id="4" quantity="5"/>
+	   </order>
+	</order_history>
+   </customer_record>
+   <product_list>
+   <product id="1" name="MIXED1000" price="1.99">Mixed Bag of 1000 Rubber Bands</product>
+   <product id="2" name="MIXED5000" price="4.09">Mixed Bag of 5000 Rubber Bands</product>
+   <product id="3" name="RED1000" price="2.19">Bag of 1000 Red Rubber Bands</product>
+   <product id="4" name="RED10000" price="17.49">Bag of 10000 Red Rubber Bands</product>
+   <product id="5" name="BLUE1000" price="0.99">Bag of 1000 Blue Rubber Bands</product>
+   <product id="6" name="BLUE10000" price="8.99">Bag of 10000 Blue Rubber Bands</product>
+   </product_list>
+</myrubberbands>

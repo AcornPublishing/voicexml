@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<var name="user" expr="'Mike Fraser'"/>
+<form>
+  <block>
+    <prompt>
+       Hi, <value expr="user"/>
+    </prompt>
+  </block>
+</form>
+</vxml>

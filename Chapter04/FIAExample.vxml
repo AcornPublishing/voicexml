@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<vxml lang="en-us" version="1.0">
+
+	<form id="start">
+		<block name="welcome">
+			<prompt>
+				Hi!
+			</prompt>
+		</block>
+	
+		<filled namelist="one">
+			<prompt>I didn't quite understand you. </prompt> 	
+		</filled>
+	
+		<field name="one" type="boolean">
+			<prompt>Say yes or no.</prompt>
+		</field>
+	
+		<field name="two" type="boolean">
+			<prompt>Did you just say yes or no?</prompt>
+			<filled>
+				<prompt>Ah.  I thought so.</prompt>
+			</filled>
+		</field>
+		
+		<block name="liar" cond="two != one">
+			You are a liar!
+			<clear namelist="one two liar truthful"/>
+		</block>
+		
+		<block name="truthful" cond="two == one">
+			Thanks for telling the truth.
+			<clear namelist="one two liar truthful"/>
+		</block>	
+	</form>
+</vxml>

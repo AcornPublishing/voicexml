@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+
+	<catch event="telephone.disconnect">
+		<submit next="hangup.vxml"/>
+	</catch>
+	
+	<link event="help">
+		<grammar type="application/x-jsgf">
+			please please tell me now
+		</grammar>
+	</link>
+	
+</vxml>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <field name="shares" type="number">
+    <prompt>
+      The number of shares to buy?
+    </prompt>
+    <nomatch count="1">
+      Please tell me the number of shares you want to buy.  For example, one
+      hundred.
+    </nomatch>
+    <nomatch count="2">
+      Please repeat the number of shares you want to buy
+    </nomatch>
+  </field>
+</form>
+</vxml>

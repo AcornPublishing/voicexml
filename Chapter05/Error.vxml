@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<vxml version="1.0">
+<form>     
+  <error>
+    <prompt>Error occurred</prompt>
+  </error> 
+  <block>
+    The variable <value expr="myvar"/> is not declared.
+  </block>
+</form>
+</vxml>

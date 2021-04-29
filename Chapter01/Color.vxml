@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+  <menu>
+    <prompt>Which is your favorite color of the following <enumerate/></prompt>
+    <choice next="blue.vxml"> blue </choice>
+    <choice next="green.vxml"> green </choice>
+    <choice next="yellow.vxml"> yellow </choice>
+    <choice next="purple.vxml"> purple </choice>
+    <help>
+      Please choose one of <enumerate/> as your favorite color.
+    </help>
+    <noinput>
+      Come on, there must be one you prefer
+    </noinput>
+    <nomatch>
+      Please speak clearly and try again. Remember your choices are <enumerate/>
+    </nomatch>
+  </menu>
+</vxml>

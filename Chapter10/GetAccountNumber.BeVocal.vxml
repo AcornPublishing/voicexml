@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+
+<form id="getAlphaDigitString">
+  <object classid="speechobject://nuance.so.SOAlphaDigitString" name="rtnstr">
+    <param name="initialPrompt" type="nuance.common.prompts.URLPrompt">
+      <param name="URL" type="java.net.URL" 
+        expr="'http://www.openland.com/voicexml/verifyaccount.wav'"/>
+    </param>
+    <param name="format"
+      type="array:nuance.so.sectioneddigitstring.WeightedFormat">
+       <param index="0" type="nuance.so.sectioneddigitstring.WeightedFormat">
+         <param name="prob" expr="'0.8'" />
+         <param name="format" expr="'AAA-DD-DDD'" />
+       </param>
+       <param index="1" type="nuance.so.sectioneddigitstring.WeightedFormat">
+         <param name="prob" expr="'0.2'" />
+         <param name="format" expr="'DDD-AA-AAA'" />
+       </param>
+    </param>
+  </object>
+  <filled>
+    <prompt> 
+      You said <value expr="rtnstr"/>
+    </prompt> 
+  </filled>          
+  </form>
+
+</vxml>

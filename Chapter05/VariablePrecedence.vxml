@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+<form>
+  <!-- user has a dialog scope. -->
+  <var name="user" expr="'Mike Fraser'"/>
+  <block>
+    <!-- user has an anonymous Scope. -->
+    <var name="user" expr="'Susan Fraser'"/>
+    <prompt>
+       <!-- use the user that has an anonymous scope. -->
+      The user is <value expr="user"/>.
+    </prompt>
+  </block>
+</form>
+</vxml>

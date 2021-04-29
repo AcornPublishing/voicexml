@@ -1,0 +1,14 @@
+<?xml version="1.0"?> 
+<vxml version="1.0">
+<form>
+  <block>
+    <var name="user" expr="'Mike Fraser'"/>
+  </block>
+  <block>
+    <prompt>
+      <!-- user cannot be accessed here. -->
+      Hi, <value expr="user"/>
+    </prompt>
+  </block>
+</form> 
+</vxml>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<vxml version="1.0">
+  <form id="form1">
+    <block name="block0">
+      <prompt>
+        You are in block 0.
+      </prompt>
+            <!-- Transition to another form item -->
+      <goto nextitem="block2"/>
+    </block>
+
+    <block name="block1">
+      <prompt>
+        You are in block 1.
+      </prompt>
+            <!-- Transition to another form -->
+      <goto next="#form1"/>
+    </block>
+
+    <block name="block2">
+      <prompt>
+        You are in block 2.
+      </prompt>
+    </block>
+  </form>
+
+  <form id="form2">
+    <block>
+      <prompt>
+        You are in form 2.
+      </prompt>
+    </block>
+  </form>
+</vxml>
